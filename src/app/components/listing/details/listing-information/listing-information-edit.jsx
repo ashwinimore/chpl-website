@@ -139,7 +139,7 @@ function ChplListingInformationEdit() {
     setAcbs(acbsQuery.data.acbs);
     setAcbOptions(acbsQuery.data.acbs
       .sort((a, b) => (a.name < b.name ? -1 : 1))
-      .map((acb) => `${acb.retired ? 'Retired | ' : ''}${acb.name}`));
+      .map((acb) => acb.name));
   }, [acbsQuery.data, acbsQuery.isLoading, acbsQuery.isSuccess]);
 
   useEffect(() => {
@@ -381,18 +381,18 @@ function ChplListingInformationEdit() {
                 />
                 { getSuffix() }
               </Box>
-              <ChplTextField
-                id="acb-certification-id"
-                name="acbCertificationId"
-                label="ONC-ACB Certification ID"
-                value={formik.values.acbCertificationId}
-                onChange={handleBasicChange}
-                onBlur={formik.handleBlur}
-                error={formik.touched.acbCertificationId && !!formik.errors.acbCertificationId}
-                helperText={formik.touched.acbCertificationId && formik.errors.acbCertificationId}
-              />
             </>
           )}
+        <ChplTextField
+          id="acb-certification-id"
+          name="acbCertificationId"
+          label="ONC-ACB Certification ID"
+          value={formik.values.acbCertificationId}
+          onChange={handleBasicChange}
+          onBlur={formik.handleBlur}
+          error={formik.touched.acbCertificationId && !!formik.errors.acbCertificationId}
+          helperText={formik.touched.acbCertificationId && formik.errors.acbCertificationId}
+        />
         <Typography variant="subtitle1">Status:</Typography>
         { listing.certificationEvents?.length > 0
           && (
