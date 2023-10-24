@@ -74,7 +74,7 @@ const useFetchAccessibilityStandards = () => {
 const useFetchCriteria = (props = { enabled: true, active: true }) => {
   const params = Object
     .entries(props)
-    .filter(([key]) => (key !== 'enabled' && key !== 'active'))
+    .filter(([key, value]) => key !== 'enabled' && key !== 'active' && value)
     .map(([key, value]) => `${key}=${value}`)
     .join('&');
   let query = 'certification-criteria';
